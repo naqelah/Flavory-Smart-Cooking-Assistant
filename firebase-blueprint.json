@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "SavedRecipe": {
+      "title": "Saved Recipe",
+      "description": "A recipe saved by the user.",
+      "type": "object",
+      "properties": {
+        "menuName": { "type": "string" },
+        "estimation": {
+          "type": "object",
+          "properties": {
+            "time": { "type": "string" },
+            "calories": { "type": "string" }
+          }
+        },
+        "analysis": {
+          "type": "object",
+          "properties": {
+            "carbs": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "amount": { "type": "string" } } } },
+            "protein": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "amount": { "type": "string" } } } },
+            "spices": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "amount": { "type": "string" } } } },
+            "notes": { "type": "string" }
+          }
+        },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "storageTips": { "type": "string" },
+        "substitutions": { "type": "array", "items": { "type": "object", "properties": { "original": { "type": "string" }, "replacement": { "type": "string" } } } },
+        "originalIngredients": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "amount": { "type": "string" }, "type": { "type": "string" } } } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" }
+      },
+      "required": ["menuName", "estimation", "steps", "userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/savedRecipes/{recipeId}": {
+      "schema": "SavedRecipe",
+      "description": "Collection of recipes saved by a user."
+    }
+  }
+}

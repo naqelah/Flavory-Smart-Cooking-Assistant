@@ -1,0 +1,7 @@
+{
+  "name": "Flavory",
+  "description": "Chef AI & Penghemat Bahan Makanan - Buat resep lezat dari bahan yang ada di kulkasmu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

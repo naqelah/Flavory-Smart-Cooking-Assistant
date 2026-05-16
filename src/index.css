@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Lora", serif;
+  
+  --color-natural-bg: #fcfaf7;
+  --color-natural-surface: #ffffff;
+  --color-natural-sidebar: #f8f5f0;
+  --color-natural-border: #e5e0d8;
+  --color-natural-border-soft: #ece8e1;
+  
+  --color-natural-text: #3d3a36;
+  --color-natural-heading: #2d2a26;
+  --color-natural-muted: #7a746a;
+  
+  --color-brand-moss: #5A5A40;
+  --color-brand-moss-hover: #4a4a34;
+  --color-brand-clay: #D97757;
+  --color-brand-clay-light: #fdf2ec;
+}
+
+@layer base {
+  body {
+    @apply bg-natural-bg text-natural-text font-sans;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif text-natural-heading;
+  }
+}
+
+.recipe-card {
+  @apply bg-natural-surface rounded-3xl shadow-sm border border-natural-border-soft overflow-hidden;
+}
+
+.input-field {
+  @apply w-full px-5 py-4 rounded-2xl border border-natural-border focus:outline-none focus:ring-2 focus:ring-brand-moss/10 focus:border-brand-moss transition-all bg-white text-natural-text;
+}
+
+.btn-primary {
+  @apply bg-brand-moss hover:bg-brand-moss-hover text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg shadow-brand-moss/10 active:scale-95 disabled:bg-slate-200;
+}
