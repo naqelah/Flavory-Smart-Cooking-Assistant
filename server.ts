@@ -8,7 +8,7 @@ dotenv.config();
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json({ limit: '10mb' }));
 
@@ -80,7 +80,7 @@ async function startServer() {
             });
           } catch (fallbackError: any) {
             console.error("Fallback model also failed:", fallbackError);
-            throw fallbackError; // Re-throw to be handled by outer catch
+            throw fallbackError;
           }
         } else {
           throw primaryError;
@@ -105,7 +105,6 @@ async function startServer() {
                           errorMsg.includes("INVALID_ARGUMENT") ||
                           errorMsg.includes("API key");
       
-      // If quota exceeded or API key issues, return a simple mock recipe to keep the app working
       if (isQuotaError || isAuthError) {
         console.warn(isAuthError ? "API Key expired/invalid. Returning mock recipe fallback." : "Quota exceeded. Returning mock recipe fallback.");
         
@@ -145,7 +144,7 @@ async function startServer() {
     }
   });
 
-  // Vite middleware for development
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -158,11 +157,12 @@ async function startServer() {
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
-  }
+  } 
 
+ 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
-}
+} 
 
 startServer();
